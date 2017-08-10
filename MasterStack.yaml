@@ -15,7 +15,7 @@ Resources:
   ChildStack:
     Type : "AWS::CloudFormation::Stack"
     Properties:
-      TemplateURL: /Users/itishatiwari/Desktop/IAM-CloudFormation-Template-Deploy/NestedStack/ChildStacks/Childstack.yaml
+      TemplateURL: /ChildStacks/Childstack.yaml
       Parameters: Password
       Tags:
         - Key: Name
