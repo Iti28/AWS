@@ -10,7 +10,7 @@ phases:
   build:
     commands:
       - echo "Starting build `date` in `pwd`"
-      - aws cloudformation package --template-file /Users/itishatiwari/Desktop/IAM-CloudFormation-Template-Deploy/NestedStack/MasterStack.yaml --s3-bucket mybucketfortempate --output-template-file NestedStack/PackagedTemplate/packaged-template.yaml
+      - aws cloudformation package --template-file /MasterStack.yaml --s3-bucket mybucketfortempate --output-template-file /PackagedTemplate/packaged-template.yaml
   post_build:
     commands:
       - echo "build completed on `date`"
