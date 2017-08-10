@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Metadata: 
+  License: Apache-2.0
+Description: 'AWS CloudFormation Sample Template IAM_Users_Groups_and_Policies: Sample
+  template showing how to create IAM users, groups and policies.'
+Parameters:
+  Password:
+    NoEcho: 'true'
+    Type: String
+    Description: New account password
+    MinLength: '1'
+    MaxLength: '41'
+    ConstraintDescription: the password must be between 1 and 41 characters
+Resources:
+  ChildStack:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: /Users/itishatiwari/Desktop/IAM-CloudFormation-Template-Deploy/NestedStack/ChildStacks/Childstack.yaml
+      Parameters: Password
+      Tags:
+        - Key: Name
+          Value: ChildStack
+Outputs:
+  KeyAcces:
+    Value: 
+     Fn::GetAtt: ChildStack.Outputs.AccessKey
+    Description: AWSAccessKeyId of new user
+  KeySecret:
+    Value: 
+     Fn::GetAtt: ChildStack.Outputs.SecretKey
+    Description: AWSSecretKey of new user
