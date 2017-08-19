@@ -19,7 +19,7 @@ Resources:
       Parameters: Password
       Tags:
         - Key: Name
-          Value: ChildStack
+          Value: ChildStack01
 Outputs:
   KeyAcces:
     Value: 
