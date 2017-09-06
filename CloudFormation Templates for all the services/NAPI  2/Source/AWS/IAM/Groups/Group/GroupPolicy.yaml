@@ -1,0 +1,17 @@
+Parameters:
+  Groupname:
+    Type: String 
+  Policyname:
+    Type: String
+Resources:
+  mygroup:
+    Type: AWS::IAM::Group
+    Properties:
+     GroupName: !Ref Groupname
+     ManagedPolicyArns: 
+            - Fn::ImportValue:
+                  !Sub "${Policyname}" 
+    
+    
+
+    

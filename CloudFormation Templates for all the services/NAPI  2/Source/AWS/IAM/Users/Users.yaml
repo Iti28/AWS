@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Metadata: 
+  License: Apache-2.0
+Parameters:
+  EnvType:
+    Type: String 
+    AllowedValues:
+     - Dev 
+     - Prod
+     - UAT
+Conditions:
+  ProdResources: !Equals [!Ref EnvType,Prod]
+  DevResources: !Equals [!Ref EnvType,Dev]
+  UATResources: !Equals [!Ref EnvType,UAT]
+Resources:
+  ProdUser1:
+    Type : "AWS::CloudFormation::Stack"
+    Condition: ProdResources
+    Properties:
+      TemplateURL: User/User.yaml
+      Parameters: 
+       Username: User1
+  DevUser1:
+    Type : "AWS::CloudFormation::Stack"
+    Condition: DevResources
+    Properties:
+      TemplateURL: User/User.yaml
+      Parameters: 
+       Username: User1
+  UATUser1:
+    Type : "AWS::CloudFormation::Stack"
+    Condition: UATResources
+    Properties:
+      TemplateURL: User/User.yaml
+      Parameters: 
+       Username: User1

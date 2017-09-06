@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Metadata: 
+  License: Apache-2.0
+Description: 'Creating IAM Group and attaching a existing policy to the Group'
+Parameters:
+  Groupname:
+    Type: String 
+  Policyname:
+    Type: String
+Resources:
+  mygroup:
+    Type: AWS::IAM::Group
+    Properties:
+     GroupName: !Ref Groupname
+     ManagedPolicyArns: 
+            - Fn::ImportValue:
+                  !Sub "${Policyname}" 
+    
+    
+
+    

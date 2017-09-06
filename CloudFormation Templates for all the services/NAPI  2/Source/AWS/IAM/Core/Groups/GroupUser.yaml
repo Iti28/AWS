@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Metadata: 
+  License: Apache-2.0
+Description: 'Attaching an existing User to existing Group'
+Parameters:
+  Groupname:
+    Type: String 
+  Username:
+    Type: String
+Resources:
+  addUserToGroup:
+    Type: AWS::IAM::UserToGroupAddition
+    Properties:
+      GroupName: !Ref Groupname
+      Users:
+        - !Ref Username
+  
+    
+    
+
+    

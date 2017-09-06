@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  APIName:
+    Type: String
+Resources:
+  Type: "AWS::ApiGateway::RestApi"
+  Properties:
+  BodyS3Location: SwaggerDefinition/Swagger.yaml
+  Description: String
+  Name: !Ref APIName
+
+      
+       

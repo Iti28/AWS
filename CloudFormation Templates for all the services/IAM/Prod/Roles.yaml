@@ -1,0 +1,15 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Metadata: 
+  License: Apache-2.0
+Description: 'Create IAM Roles'
+Resources:
+  Role1:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../Core/Roles/RolePolicy.yaml
+      Parameters: 
+        service: lambda
+        Rolename: Role1
+        Policyname: Policy1
+  
+ 

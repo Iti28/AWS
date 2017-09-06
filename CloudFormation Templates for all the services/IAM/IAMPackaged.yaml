@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS CloudFormation IAM Master Template
+Resources:
+  Groups:
+    DependsOn:
+    - Policies
+    Properties:
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/31d72d7a7a69880d76ab88e21ee1d8f3.template
+    Type: AWS::CloudFormation::Stack
+  Policies:
+    Properties:
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/e75875fe89610f69ef4d4d5fc1ff6151.template
+    Type: AWS::CloudFormation::Stack
+  Roles:
+    DependsOn:
+    - Policies
+    Properties:
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/5d5f29ccb1275ad2b8bdd5be3fe497cb.template
+    Type: AWS::CloudFormation::Stack
+  Users:
+    DependsOn:
+    - Policies
+    - Groups
+    Properties:
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/2e71ef958fef1e6cd60938560e8a8c04.template
+    Type: AWS::CloudFormation::Stack

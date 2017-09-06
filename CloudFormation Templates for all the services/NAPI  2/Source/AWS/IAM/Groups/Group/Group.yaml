@@ -1,0 +1,13 @@
+Parameters:
+  Groupname:
+    Type: String 
+Resources:
+  mygroup:
+    Type: AWS::IAM::Group
+    Properties:
+     GroupName: !Ref Groupname
+
+    
+    
+
+    
