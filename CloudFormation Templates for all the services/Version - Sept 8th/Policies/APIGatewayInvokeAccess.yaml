@@ -1,0 +1,54 @@
+Parameters:
+  Policyname:
+    Type: String
+Resources:
+  APIGatewayInvoke:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Ref Policyname
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Sid: PermissionToInvokeAPIGateway
+          Effect: Allow
+          Action: execute-api:Invoke
+          Resource: "*"
+        - Sid: ReadOnlyAccessToCloudTrail
+          Effect: Allow
+          Action:
+            - cloudtrail:GetTrailStatus
+            - cloudtrail:DescribeTrails
+            - cloudtrail:LookupEvents
+            - cloudtrail:ListTags
+            - cloudtrail:ListPublicKeys
+            - cloudtrail:GetEventSelectors
+          Resource: "*"
+        - Sid: ReadOnlyAccessToCloudWatch
+          Effect: Allow
+          Action:
+            - cloudwatch:Get*
+            - cloudwatch:List*
+          Resource: "*"
+        - Sid: ReadOnlyAccessToLogs
+          Effect: Allow
+          Action:
+            - logs:DescribeLogGroups
+            - logs:DescribeLogStreams
+            - logs:PutLogEvents
+            - logs:GetLogEvents
+            - logs:FilterLogEvents
+          Resource: arn:aws:logs:*:*:*
+        - Sid: ReadOnlyAccessToEvents
+          Effect: Allow
+          Action:
+            - events:ListRuleNamesByTarget
+            - events:ListRules
+            - events:ListTargetsByRule
+            - events:TestEventPattern
+          Resource: arn:aws:events:*:*:*
+           
+Outputs:
+  APIGatewayInvokeOutput:
+   Value: !Ref APIGatewayInvoke
+   Export:
+     Name: !Sub "${Policyname}" 

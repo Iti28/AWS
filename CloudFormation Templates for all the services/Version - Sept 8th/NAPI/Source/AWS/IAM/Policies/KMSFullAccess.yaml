@@ -1,0 +1,27 @@
+Parameters:
+  Policyname:
+    Type: String
+Resources:
+  KMSFull:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Ref Policyname
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Sid: FullAccessToKMS
+          Effect: Allow
+          Action: KMS:*
+          Resource: "*"
+        - Effect: Allow
+          Action:
+          - iam:PassRole
+          - iam:ListRoles
+          - iam:GetRolePolicy
+          - iam:GetUser
+          Resource: "*"  
+Outputs:
+  KMSFullOutput:
+   Value: !Ref KMSFull
+   Export:
+     Name: !Sub "${Policyname}" 

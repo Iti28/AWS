@@ -1,0 +1,42 @@
+Parameters:
+  Policyname:
+    Type: String
+Resources:
+  CloudWatchRead:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Ref Policyname
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: ReadOnlyAccessToCloudWatch
+            Effect: Allow
+            Action:
+              - cloudwatch:Get*
+              - cloudwatch:List*
+            Resource: "*"
+          - Sid: ReadOnlyAccessToLogs
+            Effect: Allow
+            Action:
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:DescribeLogGroups
+              - logs:DescribeLogStreams
+              - logs:PutLogEvents
+              - logs:GetLogEvents
+              - logs:FilterLogEvents
+            Resource: arn:aws:logs:*:*:*
+          - Sid: ReadOnlyAccessToEvents
+            Effect: Allow
+            Action:
+              - events:ListRuleNamesByTarget
+              - events:ListRules
+              - events:ListTargetsByRule
+              - events:TestEventPattern
+            Resource: arn:aws:events:*:*:*
+
+Outputs:
+  CloudWatchReadOutput:
+   Value: !Ref CloudWatchRead
+   Export:
+     Name: !Sub "${Policyname}" 

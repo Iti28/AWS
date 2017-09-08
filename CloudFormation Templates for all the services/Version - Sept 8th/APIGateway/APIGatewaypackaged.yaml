@@ -1,0 +1,7 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: API Gateway Master Template
+Resources:
+  APIGateway:
+    Properties:
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/e203898955b332887d04c48cb891183f.template
+    Type: AWS::CloudFormation::Stack

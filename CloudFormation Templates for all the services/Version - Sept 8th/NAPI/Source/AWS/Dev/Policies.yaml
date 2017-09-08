@@ -1,0 +1,116 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Metadata: 
+  License: Apache-2.0
+Description: 'AWS CloudFormation Sample template showing how to create IAM users'
+Resources:
+  Policy0:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Policies/AdminstratorAccess.yaml 
+      Parameters:
+        Policyname: NAPI-Dev-AdminAccess
+  Policy1:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Policies/APIGatewayFullAccess.yaml 
+      Parameters:
+        Policyname: NAPI-Dev-APIGatewayFullAccess
+  Policy2:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Policies/APIGatewayInvokeAccess.yaml 
+      Parameters:
+        Policyname: NAPI-Dev-APIGatewayInvokeAccess
+  Policy3:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Policies/CloudTrailFullAccess.yaml 
+      Parameters:
+        Policyname: NAPI-Dev-CloudTrailFullAccess
+  Policy4:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Policies/CloudTrailReadOnlyAccess.yaml 
+      Parameters:
+        Policyname: NAPI-Dev-CloudTrailReadOnlyAccess
+  Policy5:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Policies/CloudWatchFullAccess.yaml 
+      Parameters:
+        Policyname: NAPI-Dev-CloudWatchFullAccess
+  Policy6:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Policies/CloudWatchReadOnlyAccess.yaml 
+      Parameters:
+        Policyname: NAPI-Dev-CloudWatchReadOnlyAccess
+  Policy7:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Policies/DynamoDBFullAccess.yaml 
+      Parameters:
+        Policyname: NAPI-Dev-DynamoDBFullAccess
+  Policy8:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Policies/DynamoDBReadOnlyAccess.yaml 
+      Parameters:
+        Policyname: NAPI-Dev-DynamoDBReadOnlyAccess
+  Policy9:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Policies/KMSFullAccess.yaml 
+      Parameters:
+        Policyname: NAPI-Dev-KMSFullAccess
+  Policy10:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Policies/LambdaFullAccess.yaml 
+      Parameters:
+        Policyname: NAPI-Dev-LambdaFullAccess
+  Policy11:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Policies/LambdaReadOnlyAccess.yaml 
+      Parameters:
+        Policyname: NAPI-Dev-LambdaReadOnlyAccess
+  Policy12:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Policies/S3FullAccess.yaml 
+      Parameters:
+        Policyname: NAPI-Dev-S3FullAccess
+  Policy13:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Policies/S3ReadOnlyAccess.yaml 
+      Parameters:
+        Policyname: NAPI-Dev-S3ReadOnlyAccess
+  Policy14:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Policies/SNSFullAccess.yaml 
+      Parameters:
+        Policyname: NAPI-Dev-SNSFullAccess
+  Policy15:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Policies/SNSReadOnlyAccess.yaml 
+      Parameters:
+        Policyname: NAPI-Dev-SNSReadOnlyAccess
+  Policy16:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Policies/NAPI-DynamoDB-Development.yaml 
+      Parameters:
+        Policyname: NAPI-DynamoDB-Development
+  Policy17:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Policies/ApplicationAdmin.yaml 
+      Parameters:
+        Policyname: NAPI-ApplicationAdmin
+ 
+
+ 

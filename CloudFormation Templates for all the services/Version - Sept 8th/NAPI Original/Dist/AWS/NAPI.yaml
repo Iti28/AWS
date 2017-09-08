@@ -1,0 +1,14 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS CloudFormation Master Template
+Resources:
+  IAM:
+    Properties:
+      TemplateURL: /NAPI/Source/IAM/IAM.yaml
+    Type: AWS::CloudFormation::Stack
+    IAM:
+    Properties:
+      TemplateURL: /NAPI/Source/DynamoDB/DynamoDB.yaml
+    Type: AWS::CloudFormation::Stack
+  
+    
+ 

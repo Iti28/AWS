@@ -1,0 +1,61 @@
+Parameters:
+  Policyname:
+    Type: String
+Resources:
+  CloudTrailFull:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Ref Policyname
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: FullAccessToCloudTrail
+            Effect: Allow
+            Action: cloudtrail:*
+            Resource: "*"
+          - Sid: ReadOnlyAccessToCloudWatch
+            Effect: Allow
+            Action:
+              - cloudwatch:Get*
+              - cloudwatch:List*
+            Resource: "*"
+          - Sid: ReadOnlyAccessToLogs
+            Effect: Allow
+            Action:
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:DescribeLogGroups
+              - logs:DescribeLogStreams
+              - logs:PutLogEvents
+              - logs:GetLogEvents
+              - logs:FilterLogEvents
+            Resource: arn:aws:logs:*:*:*
+          - Sid: ReadOnlyAccessToEvents
+            Effect: Allow
+            Action:
+              - events:ListRuleNamesByTarget
+              - events:ListRules
+              - events:ListTargetsByRule
+              - events:TestEventPattern
+            Resource: arn:aws:events:*:*:*
+          - Sid: ReadOnlyAccessToGetS3Buckets
+            Effect: Allow
+            Action:
+              - s3:GetBucketLocation
+              - s3:ListAllMyBuckets
+            Resource: arn:aws:s3:::*
+          - Sid: ReadOnlyAccessToListSpecificS3Buckets
+            Effect: Allow
+            Action: s3:ListBucket
+            Resource:
+             - arn:aws:s3:::nmrdggns3test
+          - Sid: ReadOnlyAccessToGetObjectsOfSpecificS3Bucket
+            Effect: Allow
+            Action: s3:GetObject
+            Resource:
+              - arn:aws:s3:::*
+Outputs:
+  CloudTrailFullOutput:
+   Value: !Ref CloudTrailFull
+   Export:
+     Name: !Sub "${Policyname}" 

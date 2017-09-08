@@ -1,0 +1,32 @@
+Parameters:
+  Policyname:
+    Type: String
+Resources:
+  S3Read:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Ref Policyname
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: ReadOnlyAccessToGetS3Buckets
+            Effect: Allow
+            Action:
+            - s3:GetBucketLocation
+            - s3:ListAllMyBuckets
+            Resource: arn:aws:s3:::*
+          - Sid: ReadOnlyAccessToListSpecificS3Buckets
+            Effect: Allow
+            Action: s3:ListBucket
+            Resource:
+            - arn:aws:s3:::tests3bucketvand
+          - Sid: ReadOnlyAccessToGetObjectsOfSpecificS3Bucket
+            Effect: Allow
+            Action: s3:GetObject
+            Resource:
+            - arn:aws:s3:::tests3bucketvand  
+Outputs:
+  S3ReadOutput:
+   Value: !Ref S3Read
+   Export:
+     Name: !Sub "${Policyname}" 

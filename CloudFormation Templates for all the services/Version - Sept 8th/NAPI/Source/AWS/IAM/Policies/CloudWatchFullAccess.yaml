@@ -1,0 +1,28 @@
+Parameters:
+  Policyname:
+    Type: String
+Resources:
+  CloudWatchFull:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Ref Policyname
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: FullAccessToCloudWatch
+            Effect: Allow
+            Action: cloudwatch:*
+            Resource: "*"
+          - Sid: FullAccessToLogs
+            Effect: Allow
+            Action: logs:*
+            Resource: arn:aws:logs:us-east-1:*:*
+          - Sid: FullAccessToEvents
+            Effect: Allow
+            Action: events:*
+            Resource: arn:aws:events:us-east-1:*:*
+Outputs:
+  CloudWatchFullOutput:
+   Value: !Ref CloudWatchFull
+   Export:
+     Name: !Sub "${Policyname}" 

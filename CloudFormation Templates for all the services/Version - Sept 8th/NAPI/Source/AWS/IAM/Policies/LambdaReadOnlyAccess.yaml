@@ -1,0 +1,48 @@
+Parameters:
+  Policyname:
+    Type: String
+Resources:
+  LambdaRead:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Ref Policyname
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Sid: ReadOnlyAccessToLambda
+          Effect: Allow
+          Action:
+          - lambda:List*
+          - lambda:Get*
+          Resource: "*"
+        - Sid: ReadOnlyAccessToCloudWatch
+          Effect: Allow
+          Action:
+          - cloudwatch:Describe*
+          - cloudwatch:Get*
+          - cloudwatch:List*
+          Resource: "*"
+        - Sid: ReadOnlyAccessToLogs
+          Effect: Allow
+          Action:
+          - logs:Describe*
+          - logs:Get*
+          - logs:TestMetricFilter
+          - logs:FilterLogEvents
+          Resource: arn:aws:logs:*:*:*
+        - Sid: ReadOnlyAccessToEvents
+          Effect: Allow
+          Action:
+          - events:DescribeRule
+          - events:ListRuleNamesByTarget
+          - events:ListRules
+          - events:ListTargetsByRule
+          - events:TestEventPattern
+          Resource: arn:aws:events:*:*:*
+
+ 
+Outputs:
+  LambdaReadOutput:
+   Value: !Ref LambdaRead
+   Export:
+     Name: !Sub "${Policyname}" 

@@ -1,0 +1,20 @@
+Parameters:
+  Policyname:
+    Type: String
+Resources:
+  SNSFull:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Ref Policyname
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Sid: FullAccessToSNS
+          Effect: Allow
+          Action: sns:*
+          Resource: arn:aws:sns:us-east-1:*:*  
+Outputs:
+  SNSFullOutput:
+   Value: !Ref SNSFull
+   Export:
+     Name: !Sub "${Policyname}" 

@@ -1,0 +1,50 @@
+Parameters:
+  Policyname:
+    Type: String
+Resources:
+  LambdaFull:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Ref Policyname
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Sid: FullAccessToLambda
+          Effect: Allow
+          Action: lambda:*
+          Resource: "*"
+        - Sid: FullAccessToCloudWatch
+          Effect: Allow
+          Action: cloudwatch:*
+          Resource: "*"
+        - Sid: FullAccessToLogs
+          Effect: Allow
+          Action: logs:*
+          Resource: arn:aws:logs:us-east-1:*:*
+        - Sid: FullAccessToEvents
+          Effect: Allow
+          Action: events:*
+          Resource: arn:aws:events:us-east-1:*:*
+        - Sid: ListExistingRolesAndPolicies
+          Effect: Allow
+          Action:
+          - iam:ListRolePolicies
+          - iam:ListRoles
+          - iam:CreateRole
+          - iam:CreatePolicy
+          - iam:AttachRolePolicy
+          Resource: arn:aws:iam::927990984884:role/*
+        - Sid: FullAccessToKMS
+          Effect: Allow
+          Action: KMS:ListAliases
+          Resource: "*"
+        - Sid: PermissionToPassAnyRole
+          Effect: Allow
+          Action:
+          - iam:PassRole
+          Resource: "*"  
+Outputs:
+  LambdaFullOutput:
+   Value: !Ref LambdaFull
+   Export:
+     Name: !Sub "${Policyname}" 

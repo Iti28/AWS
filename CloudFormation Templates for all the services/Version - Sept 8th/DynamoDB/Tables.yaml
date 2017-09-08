@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS CloudFormation IAM Master Template
+Resources:
+  Table1:
+    Type: AWS::CloudFormation::Stack 
+    Properties:
+      TemplateURL: Tables/Table.yaml
+      Parameters:
+       TableName: Device
+       KeyAttributeName: DeviceId
+       KeyAttributeType: S
+       KeyType: HASH
+       ReadCapacityUnits: 5
+       WriteCapacityUnits: 5
+  TableGSI1:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: Tables/TableGSI.yaml
+      Parameters:
+       TableName: Users
+       KeyAttributeName: UserId
+       KeyAttributeType: S
+       GSIKeyAttributeName: Email
+       GSIKeyAttributeType: S
+       KeyType: HASH
+       GSIKeyType: HASH
+       ProjectionType: ALL
+       ReadCapacityUnits: 5
+       WriteCapacityUnits: 5

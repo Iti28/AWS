@@ -1,0 +1,22 @@
+Parameters:
+  Policyname:
+    Type: String
+Resources:
+  SNSRead:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Ref Policyname
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Sid: ReadOnlyAccessToSNS
+          Effect: Allow
+          Action:
+          - sns:Get*
+          - sns:List*
+          Resource: arn:aws:sns:us-east-1:*:*
+Outputs:
+  SNSReadOutput:
+   Value: !Ref SNSRead
+   Export:
+     Name: !Sub "${Policyname}" 

@@ -1,0 +1,39 @@
+Parameters:
+  Policyname:
+    Type: String
+Resources:
+  DynamoDBFull:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Ref Policyname
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Sid: FullAccessToDynamoDB
+          Effect: Allow
+          Action: dynamodb:*
+          Resource: "*"
+        - Sid: ReadOnlyAccessToCloudWatch
+          Effect: Allow
+          Action:
+          - cloudwatch:DeleteAlarms
+          - cloudwatch:DescribeAlarmHistory
+          - cloudwatch:DescribeAlarms
+          - cloudwatch:DescribeAlarmsForMetric
+          - cloudwatch:GetMetricStatistics
+          - cloudwatch:ListMetrics
+          - cloudwatch:PutMetricAlarm
+          Resource: "*"
+        - Sid: AllowTheUserToAssignRole
+          Action:
+          - iam:PassRole
+          Effect: Allow
+          Resource: "*"
+          Condition:
+            StringLike:
+              iam:PassedToService: dax.amazonaws.com
+Outputs:
+  DynamoDBFullOutput:
+   Value: !Ref DynamoDBFull
+   Export:
+     Name: !Sub "${Policyname}" 

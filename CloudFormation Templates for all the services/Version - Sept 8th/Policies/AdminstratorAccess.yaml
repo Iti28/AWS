@@ -1,0 +1,19 @@
+Parameters:
+  Policyname:
+    Type: String
+Resources:
+  Admin:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Ref Policyname
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+        - Effect: Allow
+          Action: '*'
+          Resource: '*'  
+Outputs:
+ AdminOutput:
+   Value: !Ref Admin
+   Export:
+     Name: !Sub "${Policyname}" 

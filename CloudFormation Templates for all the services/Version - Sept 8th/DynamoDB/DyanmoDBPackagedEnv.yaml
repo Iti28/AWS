@@ -1,0 +1,7 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS CloudFormation IAM Master Template
+Resources:
+  Tables:
+    Properties:
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/459e25609f64e4d758e3672f45747517.template
+    Type: AWS::CloudFormation::Stack

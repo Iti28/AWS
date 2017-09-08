@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Metadata: 
+  License: Apache-2.0
+Description: 'AWS CloudFormation Sample template showing how to create IAM users'
+Resources:
+  CreateUserStack01:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../Core/Users/UserGroup.yaml
+      Parameters: 
+       Username: User1
+       Groupname: Group1
+ 

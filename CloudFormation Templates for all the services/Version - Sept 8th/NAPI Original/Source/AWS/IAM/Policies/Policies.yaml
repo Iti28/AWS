@@ -1,0 +1,34 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Metadata: 
+  License: Apache-2.0
+Parameters:
+  EnvType:
+    Type: String 
+    AllowedValues:
+     - Dev 
+     - Prod
+     - UAT
+Conditions:
+  ProdResources: !Equals [!Ref EnvType,Prod]
+  DevResources: !Equals [!Ref EnvType,Dev]
+  UATResources: !Equals [!Ref EnvType,UAT]
+Resources:
+  ProdPolicy1:
+    Type : "AWS::CloudFormation::Stack"
+    Condition: ProdResources
+    Properties:
+      TemplateURL: Policy/Policy.yaml 
+  DevPolicy1:
+    Type : "AWS::CloudFormation::Stack"
+    Condition: DevResources
+    Properties:
+      TemplateURL: Policy/Policy.yaml
+  UATPolicy1:
+    Type : "AWS::CloudFormation::Stack"
+    Condition: UATResources
+    Properties:
+      TemplateURL: Policy/Policy.yaml  
+        
+ 
+
+ 

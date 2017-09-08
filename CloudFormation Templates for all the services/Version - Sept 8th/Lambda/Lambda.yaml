@@ -1,0 +1,12 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS CloudFormation IAM Master Template
+Resources:
+  Lambda:
+    Type: AWS::CloudFormation::Stack 
+    Properties:
+      TemplateURL: Functions.yaml
+    
+
+        
+      
+       

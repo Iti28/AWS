@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS CloudFormation IAM Master Template
+Resources:
+  Function1:
+    Properties:
+      Parameters:
+        Functionname: NAPI_ResourcePost
+        Rolename: Role1
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/eec3b99ae8539d4e81ca9e974772603c.template
+    Type: AWS::CloudFormation::Stack
+  Function2:
+    Properties:
+      Parameters:
+        Functionname: NAPI_Authorizer
+        Rolename: Role1
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/eec3b99ae8539d4e81ca9e974772603c.template
+    Type: AWS::CloudFormation::Stack

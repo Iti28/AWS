@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'KMS Template'
+Resources:
+  Keys:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: Keys/Key.yaml
+      Parameters:
+        KeyAdmin: User1
+        KeyRole: Role1
+        AccountID: 746467874849
+        Keyalias: myKey
+
+     
+     
+ 
+   
+  
+ 

@@ -1,0 +1,11 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS CloudFormation Master Template
+Resources:
+  DynamoDB:
+    Properties:
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/3340d9ea18b1fe74ebcccb9beebb2c59.template
+    Type: AWS::CloudFormation::Stack
+  IAM:
+    Properties:
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/460bb3a483f5e5ec9e5c34c122fd0d74.template
+    Type: AWS::CloudFormation::Stack

@@ -1,0 +1,44 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Metadata: 
+  License: Apache-2.0
+Parameters:
+  EnvType:
+    Type: String 
+    AllowedValues:
+     - Dev 
+     - Prod
+     - UAT
+Conditions:
+  ProdResources: !Equals [!Ref EnvType,Prod]
+  DevResources: !Equals [!Ref EnvType,Dev]
+  UATResources: !Equals [!Ref EnvType,UAT]
+Resources:
+  ProdRole1:
+    Type : "AWS::CloudFormation::Stack"
+    Condition: ProdResources
+    Properties:
+      TemplateURL: Role/RolePolicy.yaml
+      Parameters: 
+        service: s3
+        Rolename: Role1
+        Policyname: Policy1
+  DevRole1:
+    Type : "AWS::CloudFormation::Stack"
+    Condition: DevResources
+    Properties:
+      TemplateURL: Role/RolePolicy.yaml
+      Parameters: 
+        service: s3
+        Rolename: Role1
+        Policyname: Policy1
+  UATRole1:
+    Type : "AWS::CloudFormation::Stack"
+    Condition: UATResources
+    Properties:
+      TemplateURL: Role/RolePolicy.yaml
+      Parameters: 
+        service: s3
+        Rolename: Role1
+        Policyname: Policy1
+  
+ 

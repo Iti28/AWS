@@ -1,0 +1,33 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Metadata: 
+  License: Apache-2.0
+Description: 'CloudFormation template for creating IAM User and attaching Group'
+Parameters:
+  Username:
+    Type: String
+    MinLength: '1'
+    MaxLength: '64'
+  Groupname:
+    Type: String
+Resources:   
+  User:
+    Type: AWS::IAM::User
+    Properties:
+      LoginProfile:
+        Password: 
+         Fn::Join: [ "1", [A,!Ref Username,9 ]]
+        PasswordResetRequired: Yes
+      UserName: !Ref Username
+      Groups:
+        - !Ref Groupname
+  CFNKeys:
+    Type: AWS::IAM::AccessKey
+    Properties:
+      UserName: !Ref 'User'
+Outputs:
+  AccessKey:
+    Value: !Ref 'CFNKeys'
+    Description: AWSAccessKeyId of new user
+  SecretKey:
+    Value: !GetAtt [CFNKeys, SecretAccessKey]
+    Description: AWSSecretKey of new user

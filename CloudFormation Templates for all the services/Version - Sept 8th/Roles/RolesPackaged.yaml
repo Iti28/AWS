@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS CloudFormation Sample template showing how to create IAM users
+Metadata:
+  License: Apache-2.0
+Resources:
+  FunctionRole:
+    Properties:
+      Parameters:
+        Policyname: NAPI-Development-DynamoDB
+        Rolename: NAPI-DynamoDB-Development
+        services: lambda.amazonaws.com,apigateway.amazonaws.com,events.amazonaws.com
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/a219cab9b49518a8ab57afccbdd15f60.template
+    Type: AWS::CloudFormation::Stack

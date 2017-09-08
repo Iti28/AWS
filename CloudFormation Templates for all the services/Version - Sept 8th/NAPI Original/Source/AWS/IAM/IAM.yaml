@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS CloudFormation IAM Master Template
+Resources:
+  Policies:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: env/Policies.yaml
+  Groups:
+    Type: AWS::CloudFormation::Stack
+    DependsOn: 
+      - Policies  
+    Properties:
+      TemplateURL: env/Groups.yaml 
+  Users:
+    Type: AWS::CloudFormation::Stack
+    DependsOn: 
+        - Policies
+        - Groups
+    Properties:
+      TemplateURL: env/Users.yaml 
+  Roles:
+    Type: AWS::CloudFormation::Stack
+    DependsOn: 
+        - Policies
+    Properties:
+      TemplateURL: env/Roles.yaml
+     
+     
+ 
+   
+  
+ 

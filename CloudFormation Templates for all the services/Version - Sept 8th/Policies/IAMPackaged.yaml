@@ -1,0 +1,113 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS CloudFormation Sample template showing how to create IAM users
+Metadata:
+  License: Apache-2.0
+Resources:
+  Policy0:
+    Properties:
+      Parameters:
+        Policyname: NAPI-Dev-AdminAccess
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/a9c17589ef70fba3cbcfa10f82a2420e.template
+    Type: AWS::CloudFormation::Stack
+  Policy1:
+    Properties:
+      Parameters:
+        Policyname: NAPI-Dev-APIGatewayFullAccess
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/c6fffa50f82f2d66748682447ef622ec.template
+    Type: AWS::CloudFormation::Stack
+  Policy10:
+    Properties:
+      Parameters:
+        Policyname: NAPI-Dev-LambdaFullAccess
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/c468178080bd1bfddc28bb7771424402.template
+    Type: AWS::CloudFormation::Stack
+  Policy11:
+    Properties:
+      Parameters:
+        Policyname: NAPI-Dev-LambdaReadOnlyAccess
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/cbb1229ce9c3d9d8486a566cf65ddaa1.template
+    Type: AWS::CloudFormation::Stack
+  Policy12:
+    Properties:
+      Parameters:
+        Policyname: NAPI-Dev-S3FullAccess
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/22073983cdd319a709c12564a4e2e968.template
+    Type: AWS::CloudFormation::Stack
+  Policy13:
+    Properties:
+      Parameters:
+        Policyname: NAPI-Dev-S3ReadOnlyAccess
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/42c11125048f477dbaa21dedf6a5c5ba.template
+    Type: AWS::CloudFormation::Stack
+  Policy14:
+    Properties:
+      Parameters:
+        Policyname: NAPI-Dev-SNSFullAccess
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/b15cf03acf786a60714c0427d4c9f3d4.template
+    Type: AWS::CloudFormation::Stack
+  Policy15:
+    Properties:
+      Parameters:
+        Policyname: NAPI-Dev-SNSReadOnlyAccess
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/33f0063220ed359fddd6fe6e3f576024.template
+    Type: AWS::CloudFormation::Stack
+  Policy16:
+    Properties:
+      Parameters:
+        Policyname: NAPI-Development-DynamoDB
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/6e4e488015f894044e5e7594e315ae85.template
+    Type: AWS::CloudFormation::Stack
+  Policy17:
+    Properties:
+      Parameters:
+        Policyname: NAPI-ApplicationAdmin
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/c83c9216d6c38b8ca4ad687dd37fa99a.template
+    Type: AWS::CloudFormation::Stack
+  Policy2:
+    Properties:
+      Parameters:
+        Policyname: NAPI-Dev-APIGatewayInvokeAccess
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/7596e8c7c5c4d4078aaa1d6779128116.template
+    Type: AWS::CloudFormation::Stack
+  Policy3:
+    Properties:
+      Parameters:
+        Policyname: NAPI-Dev-CloudTrailFullAccess
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/44b03b77b468412ee240663ff7d09762.template
+    Type: AWS::CloudFormation::Stack
+  Policy4:
+    Properties:
+      Parameters:
+        Policyname: NAPI-Dev-CloudTrailReadOnlyAccess
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/068ea3837c83b5d85fcf5f6c5d3274bd.template
+    Type: AWS::CloudFormation::Stack
+  Policy5:
+    Properties:
+      Parameters:
+        Policyname: NAPI-Dev-CloudWatchFullAccess
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/e051188922af21486ec509d566bea590.template
+    Type: AWS::CloudFormation::Stack
+  Policy6:
+    Properties:
+      Parameters:
+        Policyname: NAPI-Dev-CloudWatchReadOnlyAccess
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/f51acf635546c419bc33e248c81be64c.template
+    Type: AWS::CloudFormation::Stack
+  Policy7:
+    Properties:
+      Parameters:
+        Policyname: NAPI-Dev-DynamoDBFullAccess
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/a3516fb535d3506a32fd9637286cff48.template
+    Type: AWS::CloudFormation::Stack
+  Policy8:
+    Properties:
+      Parameters:
+        Policyname: NAPI-Dev-DynamoDBReadOnlyAccess
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/f2aca2a739a3d89402832b8bb2218a60.template
+    Type: AWS::CloudFormation::Stack
+  Policy9:
+    Properties:
+      Parameters:
+        Policyname: NAPI-Dev-KMSFullAccess
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/39da10bb421bbc8d7180392b8adbb70f.template
+    Type: AWS::CloudFormation::Stack

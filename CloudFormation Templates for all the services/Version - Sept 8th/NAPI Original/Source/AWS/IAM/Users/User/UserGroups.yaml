@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Metadata: 
+  License: Apache-2.0
+Parameters:
+  Username:
+    Type: String
+  Groupname:
+    Type: CommaDelimitedList 
+Resources:   
+  User:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: !Ref Username
+      Groups: 
+        - !Select [0, !Ref Groupname]
+        - !Select [1, !Ref Groupname]
+        - !Select [1, !Ref Groupname]
