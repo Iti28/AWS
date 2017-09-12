@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  APIName:
+    Type: String
+Resources:
+ RestApi:
+  Type: AWS::ApiGateway::RestApi
+  Properties:
+    BodyS3Location: NAPI.json
+    Name: !Ref APIName
+ Deployment:
+    Type: AWS::ApiGateway::Deployment
+    Properties:
+      RestApiId: !Ref RestApi
+ Stage1:
+    Type: AWS::ApiGateway::Stage
+    Properties:
+      DeploymentId: !Ref Deployment
+      RestApiId: !Ref RestApi
+      StageName: dev
+ Stage2:
+    Type: AWS::ApiGateway::Stage
+    Properties:
+      DeploymentId: !Ref Deployment
+      RestApiId: !Ref RestApi
+      StageName: prod
+
+
+
+      
+       

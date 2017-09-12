@@ -1,0 +1,47 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS CloudFormation IAM Master Template
+Resources:
+  Function1:
+    Type: AWS::CloudFormation::Stack 
+    Properties:
+      TemplateURL: ../Lambda/Function/Function.yaml
+      Parameters:
+        Rolename: NAPI-DynamoDB-Development
+        Functionname: NAPI_ResourcePost
+  Function2:
+    Type: AWS::CloudFormation::Stack 
+    Properties:
+      TemplateURL: ../Lambda/Function/Function.yaml
+      Parameters:
+        Rolename: NAPI-DynamoDB-Development
+        Functionname: NAPI_Authorizer
+  Function3:
+    Type: AWS::CloudFormation::Stack 
+    Properties:
+      TemplateURL: ../Lambda/Function/Function.yaml
+      Parameters:
+        Rolename: NAPI-DynamoDB-Development
+        Functionname: NAPI_Topics
+  Function4:
+    Type: AWS::CloudFormation::Stack 
+    Properties:
+      TemplateURL: ../Lambda/Function/Function.yaml
+      Parameters:
+        Rolename: NAPI-DynamoDB-Development
+        Functionname: NAPI_Notifications
+  Function5:
+    Type: AWS::CloudFormation::Stack 
+    Properties:
+      TemplateURL: ../Lambda/Function/Function.yaml
+      Parameters:
+        Rolename: NAPI-DynamoDB-Development
+        Functionname: NAPI_Reminders
+  Function6:
+    Type: AWS::CloudFormation::Stack 
+    Properties:
+      TemplateURL: ../Lambda/Function/Function.yaml
+      Parameters:
+        Rolename: NAPI-DynamoDB-Development
+        Functionname: NAPI_GetKey
+      
+       

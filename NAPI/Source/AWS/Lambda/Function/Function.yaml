@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  Rolename: 
+    Type: String
+  Functionname:
+    Type: String 
+Resources:
+  Function:
+    Type: "AWS::Lambda::Function"
+    Properties:
+      Code: Functions
+      FunctionName: !Ref Functionname
+      Handler: !Sub ${Functionname}.handler
+      Runtime: nodejs6.10
+      MemorySize: 128
+      Timeout: 10
+      Role: 
+       Fn::ImportValue:
+         !Sub ${Rolename}
+      
+       

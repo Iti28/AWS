@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS CloudFormation IAM Master Template
+Resources:
+      API:
+       Type: AWS::CloudFormation::Stack 
+       Properties:
+         TemplateURL: ../APIGateway/OpenAPI/API.yaml
+         Parameters:
+            APIName: NAPI
+
+        
+      
+       

@@ -1,0 +1,70 @@
+Parameters:
+  Policyname:
+    Type: String
+Resources:
+  NAPIDynamoDBDevelopment:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Ref Policyname
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Action:
+          - dynamodb:DeleteItem
+          - dynamodb:GetItem
+          - dynamodb:PutItem
+          - dynamodb:Query
+          - dynamodb:Scan
+          - dynamodb:UpdateItem
+          Resource:
+          - arn:aws:dynamodb:*:*:table/*
+        - Effect: Allow
+          Action:
+          - logs:CreateLogGroup
+          - logs:CreateLogStream
+          - logs:PutLogEvents
+          Resource: arn:aws:logs:*:*:*
+        - Effect: Allow
+          Action:
+          - iam:GetPolicy
+          - iam:GetPolicyVersion
+          Resource:
+          - arn:aws:iam::*:policy/*
+        - Effect: Allow
+          Action:
+          - kms:GenerateDataKey
+          - kms:Decrypt
+          Resource:
+          - arn:aws:kms:*:*:key/NAPI
+        - Effect: Allow
+          Action:
+          - sns:CreatePlatformApplication
+          - sns:CreatePlatformEndpoint
+          - sns:CreateTopic
+          - sns:DeleteEndpoint
+          - sns:DeletePlatformApplication
+          - sns:DeleteTopic
+          - sns:ConfirmSubscription
+          - sns:Subscribe
+          - sns:Unsubscribe
+          - sns:Publish
+          - sns:SetEndpointAttributes
+          Resource:
+          - arn:aws:sns:*:*:*
+        - Effect: Allow
+          Action:
+          - events:PutRule
+          - events:PutTargets
+          Resource:
+          - arn:aws:events:*:*:rule/*
+        - Effect: Allow
+          Action:
+          - iam:PassRole
+          Resource:
+          - arn:aws:iam::*:*
+Outputs:
+  NAPIDynamoDBDevelopmentOutput:
+   Value: !Ref NAPIDynamoDBDevelopment
+   Export:
+     Name: !Sub "${Policyname}" 

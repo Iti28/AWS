@@ -1,0 +1,101 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Metadata: 
+  License: Apache-2.0
+Description: 'AWS CloudFormation Template DynamoDB secondary Index'
+Parameters:
+  TableName:
+    Type: String
+  KeyAttributeName:
+    Description: Primary Partition Key Name
+    Type: String
+  KeyType:
+    Type: String
+    Default: HASH
+    AllowedValues: 
+     - HASH
+     - RANGE
+  GSIName1:
+    Type: String 
+  GSIPartitionKeyAttributeName1:
+    Description: HashType Secondary Key Type
+    Type: String
+  GSISortKeyAttributeName1:
+    Description: RangeType Secondary Key Type
+    Type: String
+  GSIName2:
+    Type: String 
+  GSIPartitionKeyAttributeName2:
+    Description: HashType Secondary Key Type
+    Type: String
+  GSISortKeyAttributeName2:
+    Description: RangeType Secondary Key Type
+    Type: String
+  KeyAttributeType:
+    Description: HashType Primary Key Type
+    Type: String
+  GSIPartitionKeyAttributeType1:
+    Description: HashType Secondary Key Type
+    Type: String
+  GSISortKeyAttributeType1:
+    Description: RangeType Secondary Key Type
+    Type: String
+  GSIPartitionKeyAttributeType2:
+    Description: HashType Secondary Key Type
+    Type: String
+  GSISortKeyAttributeType2:
+    Description: RangeType Secondary Key Type
+    Type: String
+  ProjectionType1:
+    Type: String
+  ProjectionType2:
+    Type: String 
+Resources:
+  TableGSISort:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Ref TableName
+      AttributeDefinitions:
+      - AttributeName: !Ref 'KeyAttributeName'
+        AttributeType: !Ref 'KeyAttributeType'
+      - AttributeName: !Ref 'GSISortKeyAttributeName1'
+        AttributeType: !Ref 'GSISortKeyAttributeType1'
+      - AttributeName: !Ref 'GSIPartitionKeyAttributeName1'
+        AttributeType: !Ref 'GSIPartitionKeyAttributeType1'
+      - AttributeName: !Ref 'GSISortKeyAttributeName2'
+        AttributeType: !Ref 'GSISortKeyAttributeType2'
+      - AttributeName: !Ref 'GSIPartitionKeyAttributeName2'
+        AttributeType: !Ref 'GSIPartitionKeyAttributeType2'
+      KeySchema:
+      - AttributeName: !Ref 'KeyAttributeName'
+        KeyType: !Ref 'KeyType'
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+      GlobalSecondaryIndexes:
+      - IndexName: !Ref 'GSIName1'
+        KeySchema:
+         - AttributeName: !Ref 'GSIPartitionKeyAttributeName1'
+           KeyType: HASH
+         - AttributeName: !Ref 'GSISortKeyAttributeName1'
+           KeyType: RANGE
+        Projection:
+          ProjectionType: !Ref 'ProjectionType1'
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
+      - IndexName: !Ref 'GSIName2'
+        KeySchema:
+         - AttributeName: !Ref 'GSIPartitionKeyAttributeName2'
+           KeyType: HASH
+         - AttributeName: !Ref 'GSISortKeyAttributeName2'
+           KeyType: RANGE
+        Projection:
+          NonKeyAttributes:
+            - !Ref 'GSIPartitionKeyAttributeName2'
+            - !Ref 'KeyAttributeName'
+          ProjectionType: !Ref 'ProjectionType2'
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
+
+

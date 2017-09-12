@@ -1,0 +1,37 @@
+Parameters:
+  Policyname:
+    Type: String
+Resources:
+  LambdaDynamoDB:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Ref Policyname
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Sid: ReadOnlyAccessToLambda
+          Effect: Allow
+          Action:
+          - lambda:List*
+          - lambda:Get*
+          Resource: "*"
+        - Sid: ReadOnlyAccessToDynamoDB
+          Effect: Allow
+          Action:
+          - dynamodb:BatchGetItem
+          - dynamodb:DescribeTable
+          - dynamodb:GetItem
+          - dynamodb:ListTables
+          - dynamodb:Query
+          - dynamodb:Scan
+          - dynamodb:DescribeReservedCapacity
+          - dynamodb:DescribeReservedCapacityOfferings
+          - dynamodb:ListTagsOfResource
+          - dynamodb:DescribeTimeToLive
+          - dynamodb:DescribeLimits
+          Resource: "*"
+Outputs:
+ LambdaDynamoDBOutput:
+   Value: !Ref LambdaDynamoDB
+   Export:
+     Name: !Sub "${Policyname}" 

@@ -1,0 +1,34 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS CloudFormation Master Template
+Resources:
+  IAM:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: IAM/IAM.yaml 
+  DynamoDB:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: DynamoDB/DynamoDB.yaml
+  Lambda:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: Lambda/Lambda.yaml
+    DependsOn:
+    - IAM
+  KMS:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: KMS/KMS.yaml
+    DependsOn:
+    - IAM
+  APIGateway:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: APIGateway/APIGateway.yaml
+    DependsOn:
+    - IAM
+
+    
+  
+    
+ 

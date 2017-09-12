@@ -1,0 +1,15 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Metadata: 
+  License: Apache-2.0
+Description: 'AWS CloudFormation Sample template showing how to create IAM users'
+Resources:
+  Group1:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Groups/GroupPolicy.yaml
+      Parameters:
+       Groupname: AdminAccess
+       Policyname: NAPI-Dev-AdminAccess
+ 
+    
+ 

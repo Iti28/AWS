@@ -1,0 +1,62 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Metadata: 
+  License: Apache-2.0
+Description: 'AWS CloudFormation Sample template showing how to create IAM users'
+Resources:
+  Policy0:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Policies/AdminstratorAccess.yaml 
+      Parameters:
+        Policyname: NAPI-Dev-AdminAccess
+  Policy1:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Policies/NAPI-Dev-Development.yaml 
+      Parameters:
+        Policyname: NAPI-Dev-Development
+  Policy2:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Policies/NAPI-Dev-Test.yaml 
+      Parameters:
+        Policyname: NAPI-Dev-Test
+  Policy3:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Policies/NAPI-Dev-Lambda-DynamoDB.yaml 
+      Parameters:
+        Policyname: NAPI-Dev-Lambda-DynamoDB
+  Policy4:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Policies/NAPI-Dev-CloudFormation.yaml 
+      Parameters:
+        Policyname: NAPI-Dev-CloudFormation
+  Policy4:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Policies/NAPI-DynamoDB-Development.yaml 
+      Parameters:
+        Policyname: NAPI-Development-DynamoDB
+  Policy5:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Policies/ApplicationAdmin.yaml 
+      Parameters:
+        AccountId: 746467874849
+        Policyname: NAPI-ApplicationAdmin
+        AWSRegion: us-east-1
+  
+  Policy6:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Policies/Patient.yaml 
+      Parameters:
+        AccountId: 74646787484
+        Policyname: NAPI-Patient
+        AWSRegion: us-east-1
+  
+ 
+
+ 

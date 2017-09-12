@@ -1,0 +1,78 @@
+Parameters:
+  Policyname:
+    Type: String
+Resources:
+  NAPIFull:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Ref Policyname
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+            - Sid: PermissionToInvokeAPIGateway
+              Effect: Allow
+              Action: execute-api:Invoke
+              Resource: "*"
+            - Sid: FullAccessToDynamoDB
+              Effect: Allow
+              Action: dynamodb:*
+              Resource: "*"
+            - Sid: AllowTheUserToAssignRole
+              Action:
+              - iam:PassRole
+              Effect: Allow
+              Resource: "*"
+              Condition:
+                StringLike:
+                  iam:PassedToService: dax.amazonaws.com
+            - Sid: FullAccessToKMS
+              Effect: Allow
+              Action: KMS:*
+              Resource: "*"
+            - Effect: Allow
+              Action:
+              - iam:GetRolePolicy
+              - iam:GetUser
+              Resource: "*" 
+            - Sid: FullAccessToLambda
+              Effect: Allow
+              Action: lambda:*
+              Resource: "*"
+            - Sid: ListExistingRolesAndPolicies
+              Effect: Allow
+              Action:
+              - iam:ListRolePolicies
+              - iam:ListRoles
+              - iam:CreateRole
+              - iam:CreatePolicy
+              - iam:AttachRolePolicy
+              Resource: arn:aws:iam::*:role/*
+            - Sid: FullAccessForAPIGatewayOnConsole
+              Effect: Allow
+              Action: apigateway:*
+              Resource: "*"
+            - Sid: FullAccessToCloudTrail
+              Effect: Allow
+              Action: cloudtrail:*
+              Resource: "*"
+            - Sid: FullAccessToCloudWatch
+              Effect: Allow
+              Action: cloudwatch:*
+              Resource: "*"
+            - Sid: FullAccessToLogs
+              Effect: Allow
+              Action: logs:*
+              Resource: arn:aws:logs:*:*:*
+            - Sid: FullAccessToEvents
+              Effect: Allow
+              Action: events:*
+              Resource: arn:aws:events:*:*:*
+            - Sid: FullAccessToSNS
+              Effect: Allow
+              Action: sns:*
+              Resource: arn:aws:sns:*:*:*
+Outputs:
+  NAPIFullOutput:
+   Value: !Ref NAPIFull
+   Export:
+     Name: !Sub "${Policyname}" 

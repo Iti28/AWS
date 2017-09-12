@@ -1,0 +1,68 @@
+Parameters:
+  Policyname:
+    Type: String
+Resources:
+  NAPITest:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Ref Policyname
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Sid: PermissionToInvokeAPIGateway
+          Effect: Allow
+          Action: execute-api:Invoke
+          Resource: "*"
+        - Sid: ReadOnlyAccessToLambda
+          Effect: Allow
+          Action:
+          - lambda:List*
+          - lambda:Get*
+          Resource: "*"
+        - Sid: ReadOnlyAccessToDynamoDB
+          Effect: Allow
+          Action:
+          - dynamodb:BatchGetItem
+          - dynamodb:DescribeTable
+          - dynamodb:GetItem
+          - dynamodb:ListTables
+          - dynamodb:Query
+          - dynamodb:Scan
+          - dynamodb:DescribeReservedCapacity
+          - dynamodb:DescribeReservedCapacityOfferings
+          - dynamodb:ListTagsOfResource
+          - dynamodb:DescribeTimeToLive
+          - dynamodb:DescribeLimits
+          Resource: "*"
+        - Sid: ReadOnlyAccessToCloudWatch
+          Effect: Allow
+          Action:
+            - cloudwatch:Get*
+            - cloudwatch:List*
+            - cloudwatch:DescribeAlarmHistory
+            - cloudwatch:DescribeAlarms
+            - cloudwatch:DescribeAlarmsForMetric
+          Resource: "*"
+        - Sid: ReadOnlyAccessToLogs
+          Effect: Allow
+          Action:
+            - logs:DescribeLogGroups
+            - logs:DescribeLogStreams
+            - logs:PutLogEvents
+            - logs:GetLogEvents
+            - logs:FilterLogEvents
+          Resource: arn:aws:logs:*:*:*
+        - Sid: ReadOnlyAccessToEvents
+          Effect: Allow
+          Action:
+            - events:ListRuleNamesByTarget
+            - events:ListRules
+            - events:ListTargetsByRule
+            - events:TestEventPattern
+          Resource: arn:aws:events:*:*:*
+
+Outputs:
+  NAPITestOutput:
+   Value: !Ref NAPITest
+   Export:
+     Name: !Sub "${Policyname}" 

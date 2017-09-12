@@ -1,0 +1,110 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Metadata: 
+  License: Apache-2.0
+Description: 'AWS CloudFormation Sample template showing how to create IAM users'
+Resources:
+  User1:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Users/UserGroup.yaml
+      Parameters: 
+       Username: dzottola
+       Groupname: AdminAccess
+  User2:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Users/UserGroup.yaml
+      Parameters: 
+       Username: debbinr
+       Groupname: AdminAccess
+  User3:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Users/UserGroup.yaml
+      Parameters: 
+       Username: cli
+       Groupname: AdminAccess
+  User4:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Users/Userpolicy.yaml
+      Parameters: 
+       Username: bhatots
+       Policyname: NAPI-Dev-Lambda-DynamoDB
+  User5:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Users/Userpolicy.yaml
+      Parameters: 
+       Username: chellip
+       Policyname: NAPI-Dev-Development
+  User6:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Users/Userpolicy.yaml
+      Parameters: 
+       Username: jairama
+       Policyname: NAPI-Dev-Lambda-DynamoDB
+  User7:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Users/User.yaml
+      Parameters: 
+       Username: kiranmu
+  User8:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Users/User.yaml
+      Parameters: 
+       Username: jaina17
+  User9:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Users/User.yaml
+      Parameters: 
+       Username: goswamp
+  User10:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Users/User.yaml
+      Parameters: 
+       Username: patankv
+  User11:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Users/UserPolicy.yaml
+      Parameters: 
+       Username: kalepas
+       Policyname: NAPI-Dev-Test
+  User12:
+    Type : "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: ../IAM/Users/UserPolicy.yaml
+      Parameters: 
+       Username: seksena
+       Policyname: NAPI-Dev-Test
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,41 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Metadata: 
+  License: Apache-2.0
+Description: 'Creating IAM Role and attaching existing policy to the Role'
+Parameters:
+  services:
+   Type: CommaDelimitedList
+  Rolename:
+    Type: String
+  Policyname:
+    Type: String
+Resources:
+ Role:  
+  Type: "AWS::IAM::Role"
+  Properties: 
+   AssumeRolePolicyDocument:
+     Version: "2012-10-17"
+     Statement: 
+      - 
+        Effect: "Allow"
+        Principal: 
+          Service: 
+           - !Select [0,!Ref services]
+           - !Select [1,!Ref services]
+           - !Select [2,!Ref services]
+        Action: 
+          - "sts:AssumeRole" 
+   RoleName: !Ref Rolename
+   ManagedPolicyArns: 
+      - Fn::ImportValue:
+            !Sub "${Policyname}" 
+Outputs:
+  Rolenew:
+   Value: 
+    Fn::GetAtt:
+     - "Role"
+     - "Arn"
+   Export:
+     Name: !Sub "${Rolename}" 
+
+

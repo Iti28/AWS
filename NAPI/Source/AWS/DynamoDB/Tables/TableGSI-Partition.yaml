@@ -1,0 +1,67 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Metadata: 
+  License: Apache-2.0
+Description: 'AWS CloudFormation Template DynamoDB secondary Index'
+Parameters:
+  TableName:
+    Type: String
+  KeyAttributeName:
+    Description: Primary Partition Key Name
+    Type: String
+  KeyAttributeType:
+    Description: HashType Primary Key Type
+    Type: String
+  KeyType:
+    Type: String
+    Default: HASH
+    AllowedValues: 
+     - HASH
+     - RANGE
+  GSIName:
+    Type: String
+  GSIKeyAttributeName:
+    Description: GlobalSecondaryIndexes Key Name
+    Type: String
+  GSIKeyAttributeType:
+    Description: HashType Sevondary Key Type
+    Type: String
+  GSIKeyType:
+    Type: String
+    Default: HASH
+    AllowedValues: 
+     - HASH
+     - RANGE
+  ProjectionType:
+    Type: String
+    Default: ALL
+    AllowedValues:
+      - KEYS_ONLY
+      - ALL
+Resources:
+  TableGSI:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Ref TableName
+      AttributeDefinitions:
+      - AttributeName: !Ref 'KeyAttributeName'
+        AttributeType: !Ref 'KeyAttributeType'
+      - AttributeName: !Ref 'GSIKeyAttributeName'
+        AttributeType: !Ref 'GSIKeyAttributeType'
+      KeySchema:
+      - AttributeName: !Ref 'KeyAttributeName'
+        KeyType: !Ref 'KeyType'
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+      GlobalSecondaryIndexes:
+      - IndexName: !Ref 'GSIName'
+        KeySchema:
+         - AttributeName: !Ref 'GSIKeyAttributeName'
+           KeyType: !Ref 'GSIKeyType'
+        Projection:
+          ProjectionType: !Ref ProjectionType
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
+
+

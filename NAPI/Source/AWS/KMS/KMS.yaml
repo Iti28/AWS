@@ -1,0 +1,14 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'IAM Master Template'
+Resources:
+  Keys:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: ../env/Keys.yaml
+
+     
+     
+ 
+   
+  
+ 

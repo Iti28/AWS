@@ -1,0 +1,33 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Metadata: 
+  License: Apache-2.0
+Description: 'AWS CloudFormation Template for  DynamoDB Table'
+Parameters:
+  TableName:
+    Type: String
+  KeyAttributeName:
+    Description: Primary Partition Key Name
+    Type: String
+  KeyAttributeType:
+    Description: HashType PrimaryKey Type
+    Type: String
+  KeyType:
+    Type: String
+    Default: HASH
+    AllowedValues: 
+     - HASH
+     - RANGE
+Resources:
+  myDynamoDBTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Ref TableName
+      AttributeDefinitions:
+      - AttributeName: !Ref 'KeyAttributeName'
+        AttributeType: !Ref 'KeyAttributeType'
+      KeySchema:
+      - AttributeName: !Ref 'KeyAttributeName'
+        KeyType: !Ref 'KeyType'
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5

@@ -1,0 +1,72 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS CloudFormation IAM Master Template
+Resources:
+  Table1:
+    Type: AWS::CloudFormation::Stack 
+    Properties:
+      TemplateURL: ../DynamoDB/Tables/Table.yaml
+      Parameters:
+       TableName: Device
+       KeyAttributeName: DeviceId
+       KeyAttributeType: S
+       KeyType: HASH
+  Table2:
+    Type: AWS::CloudFormation::Stack 
+    Properties:
+      TemplateURL: ../DynamoDB/Tables/Table.yaml
+      Parameters:
+       TableName: Topics
+       KeyAttributeName: TopicID
+       KeyAttributeType: S
+       KeyType: HASH
+  TableGSIPartition:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: ../DynamoDB/Tables/TableGSI-Partition.yaml
+      Parameters:
+       TableName: Users
+       KeyAttributeName: UserId
+       KeyAttributeType: S
+       GSIName: Email
+       GSIKeyAttributeName: Email
+       GSIKeyAttributeType: S
+       KeyType: HASH
+       GSIKeyType: HASH
+       ProjectionType: ALL
+  TableGSIPartition2:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: ../DynamoDB/Tables/TableGSI-Partition.yaml
+      Parameters:
+       TableName: Reminders
+       KeyAttributeName: ReminderId
+       KeyAttributeType: S
+       KeyType: HASH
+       GSIName: ReminderName-index
+       GSIKeyAttributeName: ReminderName
+       GSIKeyAttributeType: S
+       GSIKeyType: HASH
+       ProjectionType: ALL
+  TableGSISort:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: ../DynamoDB/Tables/TableGSI-Sort.yaml
+      Parameters:
+       TableName: Logs
+       KeyAttributeName: LogId
+       KeyAttributeType: S
+       KeyType: HASH
+       GSIName1: UserId-AppId-index
+       GSIPartitionKeyAttributeName1: UserId
+       GSIPartitionKeyAttributeType1: S
+       GSISortKeyAttributeName1: AppId
+       GSISortKeyAttributeType1: S
+       ProjectionType1: ALL
+       GSIName2: LogType-UpdatedAt-index
+       GSIPartitionKeyAttributeName2: LogType
+       GSIPartitionKeyAttributeType2: S
+       GSISortKeyAttributeName2: UpdatedAt
+       GSISortKeyAttributeType2: N
+       ProjectionType2: INCLUDE
+
+

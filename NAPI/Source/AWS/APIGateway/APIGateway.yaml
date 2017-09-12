@@ -1,0 +1,10 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: API Gateway Master Template
+Resources:
+  APIGateway:
+    Type: AWS::CloudFormation::Stack 
+    Properties:
+      TemplateURL: ../env/OpenAPIs.yaml
+        
+      
+       

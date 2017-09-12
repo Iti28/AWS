@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS CloudFormation Master Template
+Resources:
+  APIGateway:
+    DependsOn:
+    - IAM
+    Properties:
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/42d88277fc1f0211f979b7979df59993.template
+    Type: AWS::CloudFormation::Stack
+  DynamoDB:
+    Properties:
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/87498310fb745ed39fe3ec9c840945fc.template
+    Type: AWS::CloudFormation::Stack
+  IAM:
+    Properties:
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/ece7fae55cf4655d99379408f6392593.template
+    Type: AWS::CloudFormation::Stack
+  KMS:
+    DependsOn:
+    - IAM
+    Properties:
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/96423e802d0c41c096914ef3c366916c.template
+    Type: AWS::CloudFormation::Stack
+  Lambda:
+    DependsOn:
+    - IAM
+    Properties:
+      TemplateURL: https://s3.amazonaws.com/mybucketfortempate/2d480742d10016b7272597ee882a8ed2.template
+    Type: AWS::CloudFormation::Stack

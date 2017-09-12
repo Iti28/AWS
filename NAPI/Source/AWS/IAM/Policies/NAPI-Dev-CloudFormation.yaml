@@ -1,0 +1,20 @@
+Parameters:
+  Policyname:
+    Type: String
+Resources:
+  CloudFormation:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Ref Policyname
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Sid: FullAccessToClouFormation
+          Effect: Allow
+          Action: CloudFormation:*
+          Resource: "*"
+Outputs:
+  CloudFormationOutput:
+   Value: !Ref CloudFormation
+   Export:
+     Name: !Sub "${Policyname}" 
